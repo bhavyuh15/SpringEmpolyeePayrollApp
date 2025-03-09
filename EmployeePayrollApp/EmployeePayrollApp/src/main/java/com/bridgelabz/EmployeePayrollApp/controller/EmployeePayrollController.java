@@ -1,42 +1,30 @@
-package com.bridgelabz.EmployeePayrollApp.controller;
+package com.bridgelabz.employeePayrollApp.controller;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-
-import java.util.Map;
-
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/employee")
 public class EmployeePayrollController {
-    // Get method to get a employee data
-    @GetMapping(value = {"", "/", "get"})
-    public ResponseEntity<String> getEmployeePayrollData(){
-        return new ResponseEntity<String>("Get Call Successful", HttpStatus.OK);
+
+    @GetMapping("/get/{id}")
+    public String getEmployeeById(@PathVariable Long id) {
+        return "Fetching employee with ID: " + id;
     }
 
-    // Get Method to get employee Data with id
-    @GetMapping("/{id}")
-    public ResponseEntity<String> getEmployeePayrollDataById(@PathVariable Long id){
-        return new ResponseEntity<String>(("Get Call Successful with Id: " + id), HttpStatus.OK);
-    }
-
-    // Post Method to create a new employee payroll data
     @PostMapping("/create")
-    public ResponseEntity<Map<String, String>> createNewEmployeePayrollData(@RequestBody Map<String, String > request) {
-        return new ResponseEntity<Map<String, String>>(request , HttpStatus.OK);
+    public String createEmployee() {
+        return "Creating new employee!";
     }
 
-    // Put Method to update employee payroll data
-    @PutMapping("/update")
-    public ResponseEntity<Map<String, String>> updateEmployeePayrollData(@RequestBody Map<String, String> request) {
-        return new ResponseEntity<Map<String, String>>(request, HttpStatus.OK);
+    @PutMapping("/update/{id}")
+    public String updateEmployee(@PathVariable Long id) {
+        return "Updating employee with ID: " + id;
     }
 
-    // Delete method to delete a payroll record from the DB
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<String> deleteEmployeePayrollData(@PathVariable Long id) {
-        return new ResponseEntity<String>("Delete Call Successful with Id" + id, HttpStatus.OK);
+    public String deleteEmployee(@PathVariable Long id) {
+        return "Deleting employee with ID: " + id;
     }
+
+
 }
